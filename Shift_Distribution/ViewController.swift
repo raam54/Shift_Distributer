@@ -67,6 +67,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupLabelTap()
+        cellArr = [FirstLbl, SecondLbl, ThirdLbl, FourthLbl, FifthLbl, SixthLbl, SeventhLbl, EightsLbl, NinthLbl, TenthLbl, EleventhLbl]
         for subview in self.view.subviews as! [UIView] {
 
             if let label = subview as? UILabel {
@@ -112,13 +114,10 @@ class ViewController: UIViewController {
         FirstLbl.text = "Рыжова"
         FirstLbl.text? += "\n" + tmpPeople1[0]
         tmpPeople1.remove(at: 0)
-        tmpPeople2.remove(at: 0)
         FirstLbl.text? += "\n" + tmpPeople1[0]
         tmpPeople1.remove(at: 0)
-        tmpPeople2.remove(at: 0)
         FirstLbl.text? += "\n" + tmpPeople1[0]
         tmpPeople1.remove(at: 0)
-        tmpPeople2.remove(at: 0)
         
         SecondLbl.text = tmpPeople2[0]
         tmpPeople2.remove(at: 0)
@@ -195,5 +194,18 @@ class ViewController: UIViewController {
         people.shuffle()
         EleventhLbl.text = people[0]
     }
+    
+    @objc func labelTapped(_ sender: UITapGestureRecognizer) {
+            print("labelTapped")
+        }
+        
+    func setupLabelTap() {
+            
+            let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.labelTapped(_:)))
+        self.view.label.isUserInteractionEnabled = true
+        self.view.label.addGestureRecognizer(labelTap)
+            
+        }
+    
 }
 
