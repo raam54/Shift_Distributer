@@ -317,6 +317,10 @@
                     <navigationItem key="navigationItem" id="9mF-Yr-Qj8"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BuC-Nv-bC1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Fip-5U-zs2">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </objects>
             <point key="canvasLocation" x="5572.4637681159429" y="76.339285714285708"/>
         </scene>

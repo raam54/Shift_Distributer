@@ -14,16 +14,30 @@ class CollectionViewController: UICollectionViewController {
     var people: [String] = ["Кириллова", "Ленева", "Соколова", "Солодовник", "Сергушева", "Осипова", "Ширабайкина"]
     var cells = [WeekCell]()
     var SatLbl: UILabel!
+    var addBtn = UIImageView(frame:CGRect(x:300, y:768, width:64, height:64))
+    var distBtn = UIButton(frame: CGRect(x: 30, y: 770, width: 200, height: 64))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        overrideUserInterfaceStyle = .dark
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
+        
+        distBtn.backgroundColor = hexStringToUIColor(hex: "#bc8034")
+        distBtn.setTitle("Distribute", for: .normal)
+        distBtn.layer.cornerRadius = 4
+        view.addSubview(distBtn)
+        
+        //collectionView.backgroundColor = .black
+        
+        addBtn.image = UIImage(named: "addIcon.png") // change icon
+        view.addSubview(addBtn)
         title = "Shift Distribution"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPersonAC))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(distribute))
+        navigationController?.navigationBar.barTintColor = hexStringToUIColor(hex: "#f2cc8f")
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPersonAC))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(distribute))
         
     
     }
@@ -32,40 +46,52 @@ class CollectionViewController: UICollectionViewController {
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeekCell", for: indexPath) as! WeekCell
+        cell.layer.cornerRadius = 4
         switch(indexPath.row){
-            case 0: cell.label.text = "Понедельник"
-            case 3: cell.label.text = "Вторник"
-            case 6: cell.label.text = "Среда"
-            case 9: cell.label.text = "Четверг"
-            case 12: cell.label.text = "Пятница"
-            default: cells.append(cell)
+        case 0: cell.label.text = "Понедельник"; cell.label.layer.cornerRadius = 4
+            case 3: cell.label.text = "Вторник"; cell.label.layer.cornerRadius = 4
+            case 6: cell.label.text = "Среда"; cell.label.layer.cornerRadius = 4
+            case 9: cell.label.text = "Четверг"; cell.label.layer.cornerRadius = 4
+            case 12: cell.label.text = "Пятница"; cell.label.layer.cornerRadius = 4
+            default: cells.append(cell); cell.label.layer.cornerRadius = 3
         }
         //cell.label.text = "Пятница"
-        cell.label.layer.borderWidth = 0.5
-        cell.label.layer.borderColor = UIColor.black.cgColor
+        cell.label.layer.borderWidth = 1
+//        cell.label.layer.borderColor = UIColor.white.cgColor
+        cell.label.backgroundColor = hexStringToUIColor(hex: "#3d405b")
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if (kind == UICollectionView.elementKindSectionFooter) {
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath) as! FooterCell
-            
-            footerView.SatLbl.layer.borderColor = UIColor.black.cgColor
-            footerView.SatLbl.layer.borderWidth = 0.5
-            footerView.SatWorkLbl.layer.borderColor = UIColor.black.cgColor
-            footerView.SatWorkLbl.layer.borderWidth = 0.5
+            footerView.layer.cornerRadius = 4
+            footerView.SatLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+            footerView.SatLbl.layer.cornerRadius = 4
+//            footerView.SatLbl.layer.borderColor = UIColor.white.cgColor
+            footerView.SatLbl.layer.borderWidth = 1
+            footerView.SatWorkLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+//            footerView.SatWorkLbl.layer.borderColor = UIColor.white.cgColor
+            footerView.SatWorkLbl.layer.borderWidth = 1
+            footerView.SatWorkLbl.layer.cornerRadius = 4
             SatLbl = footerView.SatWorkLbl
 
             return footerView
         } else if (kind == UICollectionView.elementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! HeaderCell
-            
-            headerView.infoLbl.layer.borderColor = UIColor.black.cgColor
-            headerView.MornLbl.layer.borderWidth = 0.5
-            headerView.MornLbl.layer.borderColor = UIColor.black.cgColor
-            headerView.EvenLbl.layer.borderWidth = 0.5
-            headerView.EvenLbl.layer.borderColor = UIColor.black.cgColor
-            headerView.infoLbl.layer.borderWidth = 0.5
+            headerView.layer.cornerRadius = 4
+            headerView.infoLbl.layer.cornerRadius = 4
+            headerView.infoLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+//            headerView.infoLbl.layer.borderColor = UIColor.white.cgColor
+            headerView.MornLbl.layer.borderWidth = 1
+            headerView.MornLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+//            headerView.MornLbl.layer.borderColor = UIColor.white.cgColor
+            headerView.MornLbl.layer.cornerRadius = 4
+            headerView.EvenLbl.layer.borderWidth = 1
+//            headerView.EvenLbl.layer.borderColor = UIColor.white.cgColor
+            headerView.EvenLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+            headerView.EvenLbl.layer.cornerRadius = 4
+            headerView.infoLbl.layer.borderWidth = 1
             
             
             // Customize headerView here
@@ -211,20 +237,30 @@ class CollectionViewController: UICollectionViewController {
         present(ac, animated: true)
         
         
-//        switch(indexPath.row){
-//        case 1:
-//        case 2:
-//        case 4:
-//        case 5:
-//        case 7:
-//        case 8:
-//        case 9:
-//        case 10:
-//        case 11:
-//        case 13:
-//        case 14:
-//            default: break
-//        }
+
     }
 
+    
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
 }
