@@ -11,6 +11,9 @@ private let reuseIdentifier = "Cell"
 
 class CollectionViewController: UICollectionViewController {
     
+    var people: [String] = ["Кириллова", "Ленева", "Соколова", "Солодовник", "Сергушева", "Осипова", "Ширабайкина"]
+    var cells = [WeekCell]()
+    var SatLbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,18 +22,9 @@ class CollectionViewController: UICollectionViewController {
 
         // Register cell classes
         title = "Shift Distribution"
-        collectionView.layoutMargins.top = 10
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPersonAC))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(distribute))
         
-//        headerCell.infoLbl.layer.borderColor = UIColor.black.cgColor
-//        headerCell.MornLbl.layer.borderColor = UIColor.black.cgColor
-//        headerCell.EvenLbl.layer.borderColor = UIColor.black.cgColor
-//        footerCell.SatLbl.layer.borderColor = UIColor.black.cgColor
-//        footerCell.SatWorkLbl.layer.borderColor = UIColor.black.cgColor
-//        headerCell.infoLbl.layer.borderWidth = 0.5
-//        headerCell.MornLbl.layer.borderWidth = 0.5
-//        headerCell.EvenLbl.layer.borderWidth = 0.5
-//        footerCell.SatLbl.layer.borderWidth = 0.5
-//        footerCell.SatWorkLbl.layer.borderWidth = 0.5
     
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -38,7 +32,15 @@ class CollectionViewController: UICollectionViewController {
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeekCell", for: indexPath) as! WeekCell
-        cell.label.text = "Пятница"
+        switch(indexPath.row){
+            case 0: cell.label.text = "Понедельник"
+            case 3: cell.label.text = "Вторник"
+            case 6: cell.label.text = "Среда"
+            case 9: cell.label.text = "Четверг"
+            case 12: cell.label.text = "Пятница"
+            default: cells.append(cell)
+        }
+        //cell.label.text = "Пятница"
         cell.label.layer.borderWidth = 0.5
         cell.label.layer.borderColor = UIColor.black.cgColor
         return cell
@@ -52,6 +54,7 @@ class CollectionViewController: UICollectionViewController {
             footerView.SatLbl.layer.borderWidth = 0.5
             footerView.SatWorkLbl.layer.borderColor = UIColor.black.cgColor
             footerView.SatWorkLbl.layer.borderWidth = 0.5
+            SatLbl = footerView.SatWorkLbl
 
             return footerView
         } else if (kind == UICollectionView.elementKindSectionHeader) {
@@ -69,6 +72,117 @@ class CollectionViewController: UICollectionViewController {
             return headerView
         }
         fatalError()
+    }
+    
+    @objc func addPersonAC() {
+        let ac = UIAlertController(title: "Add People to Distribute", message: "Write second names through a space", preferredStyle: .alert)
+        ac.addTextField()
+        ac.addAction(UIAlertAction(title: "Add", style: .default) { [weak self, weak ac] action in
+            guard let answer = ac?.textFields?[0].text else { return }
+            self?.people = answer.split(separator: " ").map(String.init)
+            print(self?.people)
+        })
+        present(ac, animated: true)
+        
+    }
+
+    @objc func distribute() {
+        var tmpPeople = people
+        cells[0].label.text = "Рыжова"
+        cells[0].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[0].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[0].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[0].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[0].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+
+
+        cells[1].label.text = tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[1].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+
+        tmpPeople = people.shuffled()
+
+        cells[2].label.text = tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[2].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[2].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[2].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[2].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[2].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+
+        cells[3].label.text = "Рыжова"
+        cells[3].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+
+        tmpPeople = people.shuffled()
+
+        cells[4].label.text = "Рыжова"
+        cells[4].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[4].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[4].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[4].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[4].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+
+        cells[5].label.text = tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[5].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+
+        tmpPeople = people.shuffled()
+
+        cells[6].label.text? = tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[6].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[6].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[6].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[6].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[6].label.text? += "\n" + tmpPeople[0]
+
+        cells[7].label.text = "Рыжова"
+        cells[7].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+
+        tmpPeople = people.shuffled()
+
+        cells[8].label.text = "Рыжова"
+        cells[8].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[8].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[8].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[8].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[8].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+
+        cells[9].label.text = tmpPeople[0]
+        tmpPeople.remove(at: 0)
+        cells[9].label.text? += "\n" + tmpPeople[0]
+        tmpPeople.remove(at: 0)
+
+        people.shuffle()
+        SatLbl.text = people[0]
     }
 
 }
