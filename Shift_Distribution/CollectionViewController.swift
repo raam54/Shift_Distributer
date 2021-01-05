@@ -184,5 +184,47 @@ class CollectionViewController: UICollectionViewController {
         people.shuffle()
         SatLbl.text = people[0]
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let ac = UIAlertController(title: "Change name", message: nil, preferredStyle: .alert)
+        ac.addTextField()
+        ac.addAction(UIAlertAction(title: "Submit", style: .default) { [weak ac, weak self] action in
+            guard let name = ac?.textFields?[0].text else { return }
+            if indexPath.row > 0 && indexPath.row < 3 {
+                self?.cells[indexPath.row - 1].label.text = name
+            }
+            if indexPath.row > 2 && indexPath.row < 6 {
+                self?.cells[indexPath.row - 2].label.text = name
+            }
+            if indexPath.row > 5 && indexPath.row < 9 {
+                self?.cells[indexPath.row - 3].label.text = name
+            }
+            if indexPath.row > 8 && indexPath.row < 12 {
+                self?.cells[indexPath.row - 4].label.text = name
+            }
+            if indexPath.row > 11 && indexPath.row < 15 {
+                self?.cells[indexPath.row - 5].label.text = name
+            }
+            
+        })
+        print(indexPath.row)
+        present(ac, animated: true)
+        
+        
+//        switch(indexPath.row){
+//        case 1:
+//        case 2:
+//        case 4:
+//        case 5:
+//        case 7:
+//        case 8:
+//        case 9:
+//        case 10:
+//        case 11:
+//        case 13:
+//        case 14:
+//            default: break
+//        }
+    }
 
 }
