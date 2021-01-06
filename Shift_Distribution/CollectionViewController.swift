@@ -7,8 +7,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class CollectionViewController: UICollectionViewController {
     
     var people: [String] = ["Кириллова", "Ленева", "Соколова", "Солодовник", "Сергушева", "Осипова", "Ширабайкина"]
@@ -21,13 +19,16 @@ class CollectionViewController: UICollectionViewController {
         super.viewDidLoad()
         
         overrideUserInterfaceStyle = .dark
+//        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         distBtn.backgroundColor = hexStringToUIColor(hex: "#bc8034")
         distBtn.setTitle("Distribute", for: .normal)
-        distBtn.layer.cornerRadius = 4
+        distBtn.layer.cornerRadius = 6
         view.addSubview(distBtn)
         
         //collectionView.backgroundColor = .black
@@ -36,8 +37,10 @@ class CollectionViewController: UICollectionViewController {
         view.addSubview(addBtn)
         title = "Shift Distribution"
         navigationController?.navigationBar.barTintColor = hexStringToUIColor(hex: "#f2cc8f")
+        UINavigationBarAppearance().shadowColor = .black
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPersonAC))
 //        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(distribute))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .done, target: self, action: #selector(addPersonAC))
         
     
     }
@@ -46,17 +49,18 @@ class CollectionViewController: UICollectionViewController {
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeekCell", for: indexPath) as! WeekCell
-        cell.layer.cornerRadius = 4
+        cell.layer.cornerRadius = 10
+        cell.label.layer.cornerRadius = 10
         switch(indexPath.row){
-        case 0: cell.label.text = "Понедельник"; cell.label.layer.cornerRadius = 4
-            case 3: cell.label.text = "Вторник"; cell.label.layer.cornerRadius = 4
-            case 6: cell.label.text = "Среда"; cell.label.layer.cornerRadius = 4
-            case 9: cell.label.text = "Четверг"; cell.label.layer.cornerRadius = 4
-            case 12: cell.label.text = "Пятница"; cell.label.layer.cornerRadius = 4
-            default: cells.append(cell); cell.label.layer.cornerRadius = 3
+        case 0: cell.label.text = "Понедельник"
+            case 3: cell.label.text = "Вторник"
+            case 6: cell.label.text = "Среда"
+            case 9: cell.label.text = "Четверг"
+            case 12: cell.label.text = "Пятница"
+            default: cells.append(cell)
         }
         //cell.label.text = "Пятница"
-        cell.label.layer.borderWidth = 1
+//        cell.label.layer.borderWidth = 1
 //        cell.label.layer.borderColor = UIColor.white.cgColor
         cell.label.backgroundColor = hexStringToUIColor(hex: "#3d405b")
         return cell
@@ -65,36 +69,40 @@ class CollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if (kind == UICollectionView.elementKindSectionFooter) {
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath) as! FooterCell
-            footerView.layer.cornerRadius = 4
+            
             footerView.SatLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
-            footerView.SatLbl.layer.cornerRadius = 4
+            footerView.SatLbl.layer.cornerRadius = 10
+            footerView.SatLbl.layer.masksToBounds = true
 //            footerView.SatLbl.layer.borderColor = UIColor.white.cgColor
             footerView.SatLbl.layer.borderWidth = 1
-            footerView.SatWorkLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
 //            footerView.SatWorkLbl.layer.borderColor = UIColor.white.cgColor
+            footerView.SatWorkLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
             footerView.SatWorkLbl.layer.borderWidth = 1
-            footerView.SatWorkLbl.layer.cornerRadius = 4
+            footerView.SatWorkLbl.layer.cornerRadius = 10
+            footerView.SatWorkLbl.layer.masksToBounds = true
             SatLbl = footerView.SatWorkLbl
 
             return footerView
         } else if (kind == UICollectionView.elementKindSectionHeader) {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! HeaderCell
-            headerView.layer.cornerRadius = 4
-            headerView.infoLbl.layer.cornerRadius = 4
+            
+            headerView.infoLbl.layer.cornerRadius = 10
             headerView.infoLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+            headerView.infoLbl.layer.borderWidth = 1
+            headerView.infoLbl.layer.masksToBounds = true
 //            headerView.infoLbl.layer.borderColor = UIColor.white.cgColor
             headerView.MornLbl.layer.borderWidth = 1
             headerView.MornLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+            headerView.MornLbl.layer.cornerRadius = 10
+            headerView.MornLbl.layer.masksToBounds = true
 //            headerView.MornLbl.layer.borderColor = UIColor.white.cgColor
-            headerView.MornLbl.layer.cornerRadius = 4
             headerView.EvenLbl.layer.borderWidth = 1
-//            headerView.EvenLbl.layer.borderColor = UIColor.white.cgColor
             headerView.EvenLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
-            headerView.EvenLbl.layer.cornerRadius = 4
-            headerView.infoLbl.layer.borderWidth = 1
+            headerView.EvenLbl.layer.cornerRadius = 10
+            headerView.EvenLbl.layer.masksToBounds = true
+//            headerView.EvenLbl.layer.borderColor = UIColor.white.cgColor
+
             
-            
-            // Customize headerView here
             return headerView
         }
         fatalError()
@@ -113,6 +121,8 @@ class CollectionViewController: UICollectionViewController {
     }
 
     @objc func distribute() {
+        
+        // вложенные for
         var tmpPeople = people
         cells[0].label.text = "Рыжова"
         cells[0].label.text? += "\n" + tmpPeople[0]
@@ -262,5 +272,6 @@ class CollectionViewController: UICollectionViewController {
             alpha: CGFloat(1.0)
         )
     }
+    
     
 }
