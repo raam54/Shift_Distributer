@@ -16,9 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         if let tabBarController = window?.rootViewController as? UITabBarController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "NavController")
-            vc.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 1)
-            tabBarController.viewControllers?.append(vc)
+            
+            // Set up the first View Controller
+            let vc1 = storyboard.instantiateViewController(withIdentifier: "ShiftController")
+             vc1.view.backgroundColor = UIColor.orange
+             vc1.tabBarItem.title = "Orange"
+             vc1.tabBarItem.image = UIImage(named: "heart")
+             
+             // Set up the second View Controller
+            let vc2 = storyboard.instantiateViewController(withIdentifier: "Person")
+             vc2.view.backgroundColor = UIColor.purple
+             vc2.tabBarItem.title = "Purple"
+             vc2.tabBarItem.image = UIImage(named: "star")
+             
+             // Set up the Tab Bar Controller to have two tabs
+             tabBarController.viewControllers = [vc1, vc2]
+             
+             // Make the Tab Bar Controller the root view controller
+             window?.rootViewController = tabBarController
+             window?.makeKeyAndVisible()
         }
 
         return true

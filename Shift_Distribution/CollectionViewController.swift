@@ -12,45 +12,47 @@ class CollectionViewController: UICollectionViewController {
     var people: [String] = ["Кириллова", "Ленева", "Соколова", "Солодовник", "Сергушева", "Осипова", "Ширабайкина"]
     var cells = [WeekCell]()
     var SatLbl: UILabel!
-    var addBtn = UIImageView(frame:CGRect(x:300, y:768, width:64, height:64))
-    var distBtn = UIButton(frame: CGRect(x: 30, y: 770, width: 200, height: 64))
+//    var addBtn = UIImageView(frame:CGRect(x:300, y:768, width:64, height:64))
+//    var distBtn = UIButton(frame: CGRect(x: 30, y: 750, width: 200, height: 64))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         overrideUserInterfaceStyle = .dark
-//        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.tintColor = UIColor.black
-        navigationController?.navigationBar.barStyle = UIBarStyle.black
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        distBtn.backgroundColor = hexStringToUIColor(hex: "#bc8034")
-        distBtn.setTitle("Distribute", for: .normal)
-        distBtn.layer.cornerRadius = 6
-        view.addSubview(distBtn)
-        
-        //collectionView.backgroundColor = .black
-        
-        addBtn.image = UIImage(named: "addIcon.png") // change icon
-        view.addSubview(addBtn)
+//        distBtn.backgroundColor = hexStringToUIColor(hex: "#bc8034")
+//        distBtn.setTitle("Distribute", for: .normal)
+//        distBtn.layer.cornerRadius = 6
+//        view.addSubview(distBtn)
+//        
+//        //collectionView.backgroundColor = .black
+//        
+//        addBtn.image = UIImage(named: "addIcon.png") // change icon
+//        view.addSubview(addBtn)
         title = "Shift Distribution"
-        navigationController?.navigationBar.barTintColor = hexStringToUIColor(hex: "#f2cc8f")
+//        navigationController?.navigationBar.barTintColor = hexStringToUIColor(hex: "#f2cc8f")
         UINavigationBarAppearance().shadowColor = .black
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPersonAC))
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(distribute))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .done, target: self, action: #selector(addPersonAC))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPersonAC))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(distribute))
         
     
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: 118, height: 200)
+        }
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 15
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeekCell", for: indexPath) as! WeekCell
         cell.layer.cornerRadius = 10
-        cell.label.layer.cornerRadius = 10
+//        cell.label.layer.cornerRadius = 10
         switch(indexPath.row){
         case 0: cell.label.text = "Понедельник"
             case 3: cell.label.text = "Вторник"
