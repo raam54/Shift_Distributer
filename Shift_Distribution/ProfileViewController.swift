@@ -22,12 +22,10 @@ class ProfileViewController: UIViewController {
         addBtn.backgroundColor = hexStringToUIColor(hex: "#55a630")
         addBtn.layer.cornerRadius = 10
         addBtn.tintColor = .white
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(goBack))
     }
     
-    @objc func goBack() {
-        
-    }
+    
+    
     
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
@@ -61,5 +59,11 @@ class ProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    @IBAction func goBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func doneBtn(_ sender: Any) {
+        
+    }
 }
