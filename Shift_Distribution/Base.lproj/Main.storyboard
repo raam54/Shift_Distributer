@@ -327,7 +327,7 @@
         <!--Table Contorller-->
         <scene sceneID="PSP-My-dfR">
             <objects>
-                <tableViewController id="aOY-93-ahB" customClass="TableContorller" customModule="Shift_Distribution" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Table" id="aOY-93-ahB" customClass="TableContorller" customModule="Shift_Distribution" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nYg-us-swj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -345,7 +345,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="211"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s8p-2o-Ad0">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s8p-2o-Ad0">
                                             <rect key="frame" x="20" y="32" width="68" height="68"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="s8p-2o-Ad0" secondAttribute="height" multiplier="1:1" id="5sE-zl-vKD"/>
@@ -374,7 +374,6 @@
                                         <constraint firstAttribute="trailing" secondItem="VA7-0e-iRX" secondAttribute="trailing" constant="50" id="Llx-j4-aIf"/>
                                         <constraint firstItem="VA7-0e-iRX" firstAttribute="leading" secondItem="78B-Re-7g5" secondAttribute="leading" constant="50" id="YXn-ez-UCN"/>
                                         <constraint firstItem="ggU-Wc-txW" firstAttribute="top" secondItem="78B-Re-7g5" secondAttribute="top" constant="44" id="aE0-SG-nGP"/>
-                                        <constraint firstAttribute="bottom" secondItem="VA7-0e-iRX" secondAttribute="bottom" constant="42" id="aui-fG-ADN"/>
                                         <constraint firstItem="s8p-2o-Ad0" firstAttribute="leading" secondItem="78B-Re-7g5" secondAttribute="leading" constant="20" symbolic="YES" id="goY-e4-kME"/>
                                         <constraint firstItem="ggU-Wc-txW" firstAttribute="leading" secondItem="s8p-2o-Ad0" secondAttribute="trailing" constant="23" id="ziW-U4-YAG"/>
                                     </constraints>
@@ -392,26 +391,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="zvI-bM-5QD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="276-U3-jQt">
-                            <connections>
-                                <segue destination="uHM-Pd-qHg" kind="showDetail" id="NGl-Ci-qe0"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="276-U3-jQt"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTd-0p-yBg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8768.115942028986" y="58.928571428571423"/>
-        </scene>
-        <!--Profile-->
-        <scene sceneID="PfQ-Bc-oxS">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="Profile" id="uHM-Pd-qHg" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="iv3-Ky-G9X"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jJv-A6-Gen" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="9481" y="5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kg9-J2-I0N">
@@ -511,6 +496,93 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klj-V4-sDW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6948" y="931"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="xeX-Cg-SIX">
+            <objects>
+                <viewController storyboardIdentifier="Profile" id="erS-6g-dZo" customClass="ProfileViewController" customModule="Shift_Distribution" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="76m-2d-YBk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NwR-zc-RwB">
+                                <rect key="frame" x="54" y="116" width="320" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="23"/>
+                                <state key="normal" title="Add from contacts"/>
+                                <connections>
+                                    <action selector="addContacts:" destination="erS-6g-dZo" eventType="touchUpInside" id="M5z-qb-d6r"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qbc-xb-uzt">
+                                <rect key="frame" x="27" y="269" width="158" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter worker's phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Via-CV-TeK">
+                                <rect key="frame" x="228" y="269" width="160" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yl7-zs-5Vl">
+                                <rect key="frame" x="74" y="323" width="271" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="23"/>
+                                <state key="normal" title="Choose photo from library"/>
+                                <connections>
+                                    <action selector="choosePhoto:" destination="erS-6g-dZo" eventType="touchUpInside" id="EKy-B6-ZW7"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ut-h6-vc5">
+                                <rect key="frame" x="29" y="203" width="63" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter worker's name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3J8-9q-6Qv">
+                                <rect key="frame" x="123" y="203" width="267" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MqE-O1-7KS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1MM-o2-hYZ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vZv-o8-HcO"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addBtn" destination="NwR-zc-RwB" id="WeC-Fq-Uv0"/>
+                        <outlet property="nameField" destination="3J8-9q-6Qv" id="cxB-OO-YPh"/>
+                        <outlet property="phoneField" destination="Via-CV-TeK" id="14a-cj-3QW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NfY-hb-rk3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10953.623188405798" y="58.928571428571423"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3UU-gp-KtG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zyL-SZ-7fq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EvV-b7-pPM">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="erS-6g-dZo" kind="relationship" relationship="rootViewController" id="Kh6-OP-KMU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FFU-K0-xEn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10043.478260869566" y="58.928571428571423"/>
         </scene>
     </scenes>
     <resources>

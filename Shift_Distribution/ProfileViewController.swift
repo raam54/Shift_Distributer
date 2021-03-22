@@ -7,26 +7,35 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
     @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var phoneField: UITextField!
+    var delController: TableContorller?
+    weak var delegate: CommunicationProtocol?
+    var imagePicker = UIImagePickerController()
+    var imageView: UIImage!
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         overrideUserInterfaceStyle = .dark
         navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneBtn))
         addBtn.backgroundColor = hexStringToUIColor(hex: "#55a630")
         addBtn.layer.cornerRadius = 10
         addBtn.tintColor = .white
+        
     }
-    
-    
-    
-    
+
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
@@ -63,7 +72,37 @@ class ProfileViewController: UIViewController {
     @IBAction func goBack(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    @IBAction func doneBtn(_ sender: Any) {
-        
+    
+    @objc func doneBtn() {
+        delController = TableContorller()
+        guard let nameText = nameField.text else { return }
+        guard let phoneText = phoneField.text else { return }
+        self.delegate?.refreshData(person: nameText, image: imageView)
+        navigationController?.popToRootViewController(animated: true)
     }
+    
+    @IBAction func choosePhoto(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+                    print("Button capture")
+
+                    imagePicker.delegate = self
+                    imagePicker.sourceType = .savedPhotosAlbum
+                    imagePicker.allowsEditing = false
+
+                    present(imagePicker, animated: true, completion: nil)
+                }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            picker.dismiss(animated: true, completion: nil)
+            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                imageView = image
+            }
+
+        }
+    
+//    @IBAction func addContacts(_ sender: Any) {
+//    }
 }
+
+

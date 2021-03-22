@@ -7,32 +7,51 @@
 
 import UIKit
 
+protocol CommunicationProtocol: class {
+    func refreshData(person: String, image: UIImage)
+}
+
 class TableContorller: UITableViewController {
-    let people = ["Serega", "Nikita", "Anton"]
-    var pictures = [String]()
+    
+    var people = ["Serega", "Nikita", "Anton"]
+    var pictures = [UIImage]()
+    var selectedIndex : NSInteger! = -1 //Delecre this global
+    var currentImage: UIImage!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchImages()
+        //fetchImages()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPerson))
     }
     
-    func fetchImages() {
-            let fm = FileManager.default
-            let path = Bundle.main.resourcePath!
-            let items = try! fm.contentsOfDirectory(atPath: path)
+    override func viewWillAppear(_ animated: Bool) {
+        print("kaloda")
+        self.tableView.reloadData()
+    }
     
-            for item in items {
-                pictures.append(item)
-                }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        dismiss(animated: true)
+        currentImage = image
+        
+    }
     
-            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
-        }
+//    func fetchImages() {
+//            let fm = FileManager.default
+//            let path = Bundle.main.resourcePath!
+//            let items = try! fm.contentsOfDirectory(atPath: path)
+//
+//            for item in items {
+//                pictures.append(item)
+//                }
+//            print(pictures)
+//            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+//        }
+    
 
     // MARK: - Table view data source
 
@@ -43,7 +62,7 @@ class TableContorller: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return people.count
     }
 
     
@@ -57,10 +76,35 @@ class TableContorller: UITableViewController {
         cell.personImage.layer.cornerRadius = cell.personImage.frame.height/2 //This will change with corners of image and height/2 will make this circle shape
         cell.personImage.clipsToBounds = true
         cell.name.text = person
-        cell.personImage.image = UIImage(named: pictures[1])
-        print(pictures)
+        if pictures.count > 0 {  cell.personImage = UIImageView(image: pictures[0])
+            print("kaloda")
+        }
+        print(people)
         return cell
     }
+    
+// Maybe not this way
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+        }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if self.tableView.indexPathForSelectedRow?.row == indexPath.row {
+            return 300;
+        } else {
+        return 200;
+        }
+    }
+    
+   
+    
+    
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//    }
     
 
     /*
@@ -108,4 +152,20 @@ class TableContorller: UITableViewController {
     }
     */
 
+    
+    @objc func addPerson() {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Profile") as? ProfileViewController {
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+}
+
+extension TableContorller: CommunicationProtocol {
+    func refreshData(person: String, image: UIImage) {
+        self.tableView.reloadData()
+        pictures.append(image)
+        people.append(person)
+        print(pictures)
+    }
 }
