@@ -13,10 +13,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var phoneField: UITextField!
-    var delController: TableContorller?
     weak var delegate: CommunicationProtocol?
     var imagePicker = UIImagePickerController()
-    var imageView: UIImage!
+    var currentImage: UIImage!
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -36,6 +35,59 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         
     }
 
+  
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
+    @IBAction func goBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func doneBtn() {
+        guard let nameText = nameField.text else { return }
+        guard let phoneText = phoneField.text else { return }
+        self.delegate?.refreshData(person: nameText, image: currentImage)
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
+    @IBAction func choosePhoto(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+                    print("Button capture")
+
+                    imagePicker.delegate = self
+                    imagePicker.sourceType = .savedPhotosAlbum
+                    imagePicker.allowsEditing = false
+
+                    present(imagePicker, animated: true, completion: nil)
+                }
+    }
+    
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//
+//            if let image = info[UIImagePickerController.InfoKey.originalImage] as? String {
+//                print(image)
+//                imageView = image
+//            }
+//        picker.dismiss(animated: true, completion: nil)
+//
+//        }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else { return }
+        dismiss(animated: true)
+        currentImage = image
+        
+    }
+    
     func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
@@ -58,48 +110,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         )
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    @IBAction func goBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func doneBtn() {
-        delController = TableContorller()
-        guard let nameText = nameField.text else { return }
-        guard let phoneText = phoneField.text else { return }
-        self.delegate?.refreshData(person: nameText, image: imageView)
-        navigationController?.popToRootViewController(animated: true)
-    }
-    
-    @IBAction func choosePhoto(_ sender: Any) {
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-                    print("Button capture")
-
-                    imagePicker.delegate = self
-                    imagePicker.sourceType = .savedPhotosAlbum
-                    imagePicker.allowsEditing = false
-
-                    present(imagePicker, animated: true, completion: nil)
-                }
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            picker.dismiss(animated: true, completion: nil)
-            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                imageView = image
-            }
-
-        }
     
 //    @IBAction func addContacts(_ sender: Any) {
 //    }

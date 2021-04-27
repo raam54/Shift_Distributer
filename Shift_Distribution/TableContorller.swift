@@ -9,18 +9,20 @@ import UIKit
 
 protocol CommunicationProtocol: class {
     func refreshData(person: String, image: UIImage)
+    //func addImage(image: UIImage)
 }
 
 class TableContorller: UITableViewController {
     
     var people = ["Serega", "Nikita", "Anton"]
-    var pictures = [UIImage]()
+    var pictures = [String]() // photos of people
     var selectedIndex : NSInteger! = -1 //Delecre this global
     var currentImage: UIImage!
+    var profile = [String: UIImage]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //fetchImages()
+        fetchImages()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,24 +35,16 @@ class TableContorller: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.editedImage] as? UIImage else { return }
-        dismiss(animated: true)
-        currentImage = image
-        
-    }
     
-//    func fetchImages() {
-//            let fm = FileManager.default
-//            let path = Bundle.main.resourcePath!
-//            let items = try! fm.contentsOfDirectory(atPath: path)
-//
-//            for item in items {
-//                pictures.append(item)
-//                }
-//            print(pictures)
-//            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
-//        }
+    func fetchImages() {
+        let fm = FileManager.default
+        let path = Bundle.main.resourcePath!
+        let items = try! fm.contentsOfDirectory(atPath: path)
+        pictures = items.filter{$0.hasSuffix("jpg")}
+
+            print(pictures)
+            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+        }
     
 
     // MARK: - Table view data source
@@ -69,17 +63,22 @@ class TableContorller: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WorkerCell", for: indexPath) as! PersonCell
         let person = people[indexPath.row]
-
+        //This will change with corners of image and height/2 will make this circle shape
         cell.personImage.layer.borderWidth = 1
         cell.personImage.layer.masksToBounds = false
         cell.personImage.layer.borderColor = UIColor.black.cgColor
-        cell.personImage.layer.cornerRadius = cell.personImage.frame.height/2 //This will change with corners of image and height/2 will make this circle shape
+        cell.personImage.layer.cornerRadius = cell.personImage.frame.height/2
         cell.personImage.clipsToBounds = true
+        // ---
         cell.name.text = person
-        if pictures.count > 0 {  cell.personImage = UIImageView(image: pictures[0])
-            print("kaloda")
+        print(indexPath.row)
+        switch(indexPath.row) {
+        case 0: cell.personImage.image = UIImage(named: pictures[0])
+            case 1: cell.personImage.image = UIImage(named: pictures[0])
+            case 2: cell.personImage.image = UIImage(named: pictures[0])
+        default: cell.personImage.image = profile[person]
         }
-        print(people)
+        print(profile ?? "kaloda")
         return cell
     }
     
@@ -98,59 +97,6 @@ class TableContorller: UITableViewController {
         }
     }
     
-   
-    
-    
-    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     
     @objc func addPerson() {
@@ -164,8 +110,12 @@ class TableContorller: UITableViewController {
 extension TableContorller: CommunicationProtocol {
     func refreshData(person: String, image: UIImage) {
         self.tableView.reloadData()
-        pictures.append(image)
         people.append(person)
-        print(pictures)
+        profile[person] = image
+        //print(pictures)
     }
+    
+//    func addImage(image: UIImage) {
+//        currentImage = image
+//    }
 }
