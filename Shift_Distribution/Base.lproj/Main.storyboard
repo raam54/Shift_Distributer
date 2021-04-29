@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -345,7 +346,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="211"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s8p-2o-Ad0">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s8p-2o-Ad0">
                                             <rect key="frame" x="20" y="32" width="68" height="68"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="s8p-2o-Ad0" secondAttribute="height" multiplier="1:1" id="5sE-zl-vKD"/>
@@ -366,13 +367,24 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Okj-LX-Thz">
+                                            <rect key="frame" x="364" y="51" width="30" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <state key="normal">
+                                                <imageReference key="image" image="info.circle" catalog="system" symbolScale="large"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="Okj-LX-Thz" firstAttribute="top" secondItem="78B-Re-7g5" secondAttribute="topMargin" constant="40" id="4eN-X7-ZqX"/>
+                                        <constraint firstItem="Okj-LX-Thz" firstAttribute="leading" secondItem="ggU-Wc-txW" secondAttribute="trailing" id="8sm-aM-Gsr"/>
                                         <constraint firstItem="ggU-Wc-txW" firstAttribute="trailing" secondItem="VA7-0e-iRX" secondAttribute="trailing" id="9qx-Yt-2JJ"/>
                                         <constraint firstItem="s8p-2o-Ad0" firstAttribute="top" secondItem="78B-Re-7g5" secondAttribute="top" constant="32" id="Ceo-9A-oS7"/>
                                         <constraint firstAttribute="trailing" secondItem="VA7-0e-iRX" secondAttribute="trailing" constant="50" id="Llx-j4-aIf"/>
                                         <constraint firstItem="VA7-0e-iRX" firstAttribute="top" secondItem="ggU-Wc-txW" secondAttribute="bottom" constant="32" id="OuU-Yn-Kt4"/>
                                         <constraint firstItem="VA7-0e-iRX" firstAttribute="leading" secondItem="78B-Re-7g5" secondAttribute="leading" constant="50" id="YXn-ez-UCN"/>
+                                        <constraint firstItem="Okj-LX-Thz" firstAttribute="centerY" secondItem="ggU-Wc-txW" secondAttribute="centerY" id="Yte-6h-HnP"/>
+                                        <constraint firstItem="Okj-LX-Thz" firstAttribute="trailing" secondItem="78B-Re-7g5" secondAttribute="trailingMargin" id="cum-ZG-dd5"/>
                                         <constraint firstItem="s8p-2o-Ad0" firstAttribute="leading" secondItem="78B-Re-7g5" secondAttribute="leading" constant="20" symbolic="YES" id="goY-e4-kME"/>
                                         <constraint firstItem="ggU-Wc-txW" firstAttribute="centerY" secondItem="s8p-2o-Ad0" secondAttribute="centerY" id="tTq-1g-HfP"/>
                                         <constraint firstItem="ggU-Wc-txW" firstAttribute="top" secondItem="78B-Re-7g5" secondAttribute="topMargin" constant="33" id="wTh-df-Tp8"/>
@@ -585,9 +597,85 @@
             </objects>
             <point key="canvasLocation" x="10043.478260869566" y="58.928571428571423"/>
         </scene>
+        <!--Info View Controller-->
+        <scene sceneID="6C9-au-JaB">
+            <objects>
+                <viewController storyboardIdentifier="Info" id="lM5-cM-0Hx" customClass="InfoViewController" customModule="Shift_Distribution" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YBc-mo-Pgs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lWt-dk-0Ke">
+                                <rect key="frame" x="137" y="115" width="140" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                </accessibility>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sc7-dE-9IO">
+                                <rect key="frame" x="26" y="356" width="158" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter worker's phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bd3-BZ-Bci">
+                                <rect key="frame" x="227" y="356" width="160" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Nb-eC-bEc">
+                                <rect key="frame" x="28" y="290" width="63" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter worker's name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ex2-xH-Vku">
+                                <rect key="frame" x="122" y="290" width="267" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DkR-bO-tUh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ntJ-8A-6rN">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="bZS-Cm-S17"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameField" destination="Ex2-xH-Vku" id="gUz-gS-FYT"/>
+                        <outlet property="phoneField" destination="Bd3-BZ-Bci" id="hnq-uy-scd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2XE-30-lzd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10952.17391304348" y="930.80357142857133"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1V6-D8-Vnj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ny7-20-sv5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MFv-0T-k6Q">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lM5-cM-0Hx" kind="relationship" relationship="rootViewController" id="N25-cs-GS2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iES-G6-E3z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10042.028985507248" y="930.80357142857133"/>
+        </scene>
     </scenes>
     <resources>
         <image name="homekit" catalog="system" width="128" height="106"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
