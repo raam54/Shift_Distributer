@@ -9,7 +9,6 @@ import UIKit
 
 protocol CommunicationProtocol: class {
     func refreshData(person: String, image: UIImage)
-    //func addImage(image: UIImage)
 }
 
 class TableContorller: UITableViewController {
@@ -114,8 +113,4 @@ extension TableContorller: CommunicationProtocol {
         profile[person] = image
         //print(pictures)
     }
-    
-//    func addImage(image: UIImage) {
-//        currentImage = image
-//    }
 }

@@ -352,29 +352,30 @@
                                                 <constraint firstAttribute="width" constant="68" id="Fdu-We-CVC"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Рыжова Яна" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-Wc-txW">
-                                            <rect key="frame" x="111" y="44" width="201" height="45"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VA7-0e-iRX">
-                                            <rect key="frame" x="50" y="121" width="314" height="48"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VA7-0e-iRX">
+                                            <rect key="frame" x="50" y="120" width="314" height="36"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="314" id="MEB-eS-GPN"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <state key="normal" title="Send Shift Details"/>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Рыжова Яна" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-Wc-txW">
+                                            <rect key="frame" x="111" y="44" width="253" height="45"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="ggU-Wc-txW" secondAttribute="trailing" constant="175.5" id="60w-CV-90A"/>
+                                        <constraint firstItem="ggU-Wc-txW" firstAttribute="trailing" secondItem="VA7-0e-iRX" secondAttribute="trailing" id="9qx-Yt-2JJ"/>
                                         <constraint firstItem="s8p-2o-Ad0" firstAttribute="top" secondItem="78B-Re-7g5" secondAttribute="top" constant="32" id="Ceo-9A-oS7"/>
-                                        <constraint firstItem="VA7-0e-iRX" firstAttribute="top" secondItem="ggU-Wc-txW" secondAttribute="bottom" constant="32" id="H9W-T5-6QM"/>
                                         <constraint firstAttribute="trailing" secondItem="VA7-0e-iRX" secondAttribute="trailing" constant="50" id="Llx-j4-aIf"/>
+                                        <constraint firstItem="VA7-0e-iRX" firstAttribute="top" secondItem="ggU-Wc-txW" secondAttribute="bottom" constant="32" id="OuU-Yn-Kt4"/>
                                         <constraint firstItem="VA7-0e-iRX" firstAttribute="leading" secondItem="78B-Re-7g5" secondAttribute="leading" constant="50" id="YXn-ez-UCN"/>
-                                        <constraint firstItem="ggU-Wc-txW" firstAttribute="top" secondItem="78B-Re-7g5" secondAttribute="top" constant="44" id="aE0-SG-nGP"/>
                                         <constraint firstItem="s8p-2o-Ad0" firstAttribute="leading" secondItem="78B-Re-7g5" secondAttribute="leading" constant="20" symbolic="YES" id="goY-e4-kME"/>
+                                        <constraint firstItem="ggU-Wc-txW" firstAttribute="centerY" secondItem="s8p-2o-Ad0" secondAttribute="centerY" id="tTq-1g-HfP"/>
+                                        <constraint firstItem="ggU-Wc-txW" firstAttribute="top" secondItem="78B-Re-7g5" secondAttribute="topMargin" constant="33" id="wTh-df-Tp8"/>
                                         <constraint firstItem="ggU-Wc-txW" firstAttribute="leading" secondItem="s8p-2o-Ad0" secondAttribute="trailing" constant="23" id="ziW-U4-YAG"/>
                                     </constraints>
                                 </tableViewCellContentView>

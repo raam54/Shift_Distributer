@@ -245,7 +245,7 @@ class CollectionViewController: UICollectionViewController {
             }
             
         })
-        print(indexPath.row)
+        //print(indexPath.row)
         present(ac, animated: true)
         
         
