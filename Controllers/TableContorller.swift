@@ -8,42 +8,35 @@
 import UIKit
 
 protocol CommunicationProtocol: class {
-    func refreshData(person: String, image: UIImage)
+    func refreshData(name: String, image: UIImage, phone: String)
 }
 
-class TableContorller: UITableViewController {
+class TableContorller: UITableViewController, CommunicationProtocol {
     
-    var people = ["Serega", "Nikita", "Anton"]
-    var pictures = [String]() // photos of people
-    var selectedIndex : NSInteger! = -1 //Delecre this global
-    var currentImage: UIImage!
-    var profile = [String: UIImage]()
+    var people = [Person]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchImages()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
+        //fetchImages()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPerson))
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("kaloda")
+    func refreshData(name: String, image: UIImage, phone: String) {
+        people.append(Person(photo: image, name: name, phone: phone))
         self.tableView.reloadData()
+        //print(pictures)
     }
     
     
-    func fetchImages() {
-        let fm = FileManager.default
-        let path = Bundle.main.resourcePath!
-        let items = try! fm.contentsOfDirectory(atPath: path)
-        pictures = items.filter{$0.hasSuffix("jpg")}
-
-            print(pictures)
-            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
-        }
+//    func fetchImages() {
+//        let fm = FileManager.default
+//        let path = Bundle.main.resourcePath!
+//        let items = try! fm.contentsOfDirectory(atPath: path)
+//        pictures = items.filter{$0.hasSuffix("jpg")}
+//
+//            print(pictures)
+//            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+//        }
     
 
     // MARK: - Table view data source
@@ -61,7 +54,6 @@ class TableContorller: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WorkerCell", for: indexPath) as! PersonCell
-        let person = people[indexPath.row]
         //This will change with corners of image and height/2 will make this circle shape
         cell.personImage.layer.borderWidth = 1
         cell.personImage.layer.masksToBounds = false
@@ -69,15 +61,11 @@ class TableContorller: UITableViewController {
         cell.personImage.layer.cornerRadius = cell.personImage.frame.height/2
         cell.personImage.clipsToBounds = true
         // ---
-        cell.name.text = person
-        print(indexPath.row)
-        switch(indexPath.row) {
-        case 0: cell.personImage.image = UIImage(named: pictures[0])
-            case 1: cell.personImage.image = UIImage(named: pictures[0])
-            case 2: cell.personImage.image = UIImage(named: pictures[0])
-        default: cell.personImage.image = profile[person]
-        }
-        print(profile ?? "kaloda")
+        // Configuring the cell
+        let person = people[indexPath.row]
+        cell.name.text = person.name
+        cell.personImage.image = person.photo
+        cell.infoBtn.tag = indexPath.row
         return cell
     }
     
@@ -100,13 +88,13 @@ class TableContorller: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-}
-
-extension TableContorller: CommunicationProtocol {
-    func refreshData(person: String, image: UIImage) {
-        self.tableView.reloadData()
-        people.append(person)
-        profile[person] = image
-        //print(pictures)
+    
+    @IBAction func openInfo(_ sender: Any) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Info") as? InfoViewController {
+            vc.person = people[(sender as! UIButton).tag]
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
+
+

@@ -35,34 +35,21 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         
     }
 
-  
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func goBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc func doneBtn() {
         guard let nameText = nameField.text else { return }
         guard let phoneText = phoneField.text else { return }
         guard let curImage = currentImage else { return }
-        self.delegate?.refreshData(person: nameText, image: curImage)
+        self.delegate?.refreshData(name: nameText, image: curImage, phone: phoneText)
         navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func choosePhoto(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-                    print("Button capture")
 
                     imagePicker.delegate = self
                     imagePicker.sourceType = .savedPhotosAlbum
@@ -71,16 +58,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
                     present(imagePicker, animated: true, completion: nil)
                 }
     }
-    
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//
-//            if let image = info[UIImagePickerController.InfoKey.originalImage] as? String {
-//                print(image)
-//                imageView = image
-//            }
-//        picker.dismiss(animated: true, completion: nil)
-//
-//        }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }

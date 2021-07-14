@@ -11,6 +11,7 @@ class PersonCell: UITableViewCell {
     @IBOutlet weak var personImage: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var sendBtn: UIButton!
+    @IBOutlet weak var infoBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
