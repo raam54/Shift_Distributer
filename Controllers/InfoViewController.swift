@@ -21,6 +21,7 @@ class InfoViewController: UIViewController {
         for seg in collectionOfSegs {
             seg.isEnabled = false
         }
+        SatSwitch.isEnabled = false
         self.photo.image = person.photo
         self.name.text = person.name
         self.phone.text = person.phone
@@ -32,5 +33,6 @@ class InfoViewController: UIViewController {
     @objc func popVC(sender: UIBarButtonItem) {
        navigationController?.popViewController(animated: true)
     }
+    
 
 }

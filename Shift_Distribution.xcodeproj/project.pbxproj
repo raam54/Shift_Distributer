@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01074DF225A4FB69005C87B8 /* Nexa Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 01074DF125A4FB69005C87B8 /* Nexa Light.otf */; };
+		013D5A3A263B22DC00C155B5 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013D5A39263B22DC00C155B5 /* InfoViewController.swift */; };
+		014378E62695F5E600DEDEA7 /* PersonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014378E52695F5E600DEDEA7 /* PersonType.swift */; };
 		0153131C25A482B200874DED /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0153131B25A482B200874DED /* CollectionViewController.swift */; };
 		0153132825A493C100874DED /* WeekCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0153132725A493C100874DED /* WeekCell.swift */; };
 		0153132B25A4A2AF00874DED /* HeadernFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0153132A25A4A2AF00874DED /* HeadernFooterCell.swift */; };
@@ -19,12 +20,12 @@
 		019FDA7C25D5631600942477 /* TableContorller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019FDA7B25D5631600942477 /* TableContorller.swift */; };
 		019FDA8325E6869000942477 /* ProfileDidSelect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 019FDA8225E6869000942477 /* ProfileDidSelect.storyboard */; };
 		01A8C37A25A5D0AE00ED5F3B /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A8C37925A5D0AE00ED5F3B /* PersonCell.swift */; };
-		01A8C37E25A5D20500ED5F3B /* zphlwJ9dKHk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 01A8C37D25A5D20500ED5F3B /* zphlwJ9dKHk.jpg */; };
 		01A8C38625A5DEF200ED5F3B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A8C38525A5DEF200ED5F3B /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		01074DF125A4FB69005C87B8 /* Nexa Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nexa Light.otf"; path = "../Nexa Light.otf"; sourceTree = "<group>"; };
+		013D5A39263B22DC00C155B5 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		014378E52695F5E600DEDEA7 /* PersonType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonType.swift; sourceTree = "<group>"; };
 		0153131B25A482B200874DED /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		0153132725A493C100874DED /* WeekCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCell.swift; sourceTree = "<group>"; };
 		0153132A25A4A2AF00874DED /* HeadernFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadernFooterCell.swift; sourceTree = "<group>"; };
@@ -38,7 +39,6 @@
 		019FDA7B25D5631600942477 /* TableContorller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableContorller.swift; sourceTree = "<group>"; };
 		019FDA8225E6869000942477 /* ProfileDidSelect.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileDidSelect.storyboard; sourceTree = "<group>"; };
 		01A8C37925A5D0AE00ED5F3B /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
-		01A8C37D25A5D20500ED5F3B /* zphlwJ9dKHk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = zphlwJ9dKHk.jpg; sourceTree = "<group>"; };
 		01A8C38525A5DEF200ED5F3B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +56,6 @@
 		01074DEA25A4F7D7005C87B8 /* Custom Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				01074DF125A4FB69005C87B8 /* Nexa Light.otf */,
 			);
 			path = "Custom Fonts";
 			sourceTree = "<group>";
@@ -64,7 +63,15 @@
 		01592C8125A327CB007E00D5 = {
 			isa = PBXGroup;
 			children = (
-				01592C8C25A327CB007E00D5 /* Shift_Distribution */,
+				01592C9325A327CB007E00D5 /* Main.storyboard */,
+				019FDA8225E6869000942477 /* ProfileDidSelect.storyboard */,
+				01592C9625A327CF007E00D5 /* Assets.xcassets */,
+				01592C9825A327CF007E00D5 /* LaunchScreen.storyboard */,
+				01592C9B25A327CF007E00D5 /* Info.plist */,
+				01074DEA25A4F7D7005C87B8 /* Custom Fonts */,
+				01DA4430269B232D005505A0 /* Cells+Types */,
+				01DA442E269B22D5005505A0 /* Resources */,
+				01DA442C269B22B7005505A0 /* Controllers */,
 				01592C8B25A327CB007E00D5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,26 +84,35 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		01592C8C25A327CB007E00D5 /* Shift_Distribution */ = {
+		01DA442C269B22B7005505A0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				013D5A39263B22DC00C155B5 /* InfoViewController.swift */,
+				0153131B25A482B200874DED /* CollectionViewController.swift */,
+				019FDA7B25D5631600942477 /* TableContorller.swift */,
+				01A8C38525A5DEF200ED5F3B /* ProfileViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		01DA442E269B22D5005505A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				01592C8D25A327CB007E00D5 /* AppDelegate.swift */,
 				01592C8F25A327CB007E00D5 /* SceneDelegate.swift */,
-				01592C9325A327CB007E00D5 /* Main.storyboard */,
-				0153132A25A4A2AF00874DED /* HeadernFooterCell.swift */,
-				0153131B25A482B200874DED /* CollectionViewController.swift */,
-				019FDA7B25D5631600942477 /* TableContorller.swift */,
-				019FDA8225E6869000942477 /* ProfileDidSelect.storyboard */,
-				01A8C38525A5DEF200ED5F3B /* ProfileViewController.swift */,
-				01A8C37925A5D0AE00ED5F3B /* PersonCell.swift */,
-				01074DEA25A4F7D7005C87B8 /* Custom Fonts */,
-				0153132725A493C100874DED /* WeekCell.swift */,
-				01A8C37D25A5D20500ED5F3B /* zphlwJ9dKHk.jpg */,
-				01592C9625A327CF007E00D5 /* Assets.xcassets */,
-				01592C9825A327CF007E00D5 /* LaunchScreen.storyboard */,
-				01592C9B25A327CF007E00D5 /* Info.plist */,
 			);
-			path = Shift_Distribution;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		01DA4430269B232D005505A0 /* Cells+Types */ = {
+			isa = PBXGroup;
+			children = (
+				0153132A25A4A2AF00874DED /* HeadernFooterCell.swift */,
+				014378E52695F5E600DEDEA7 /* PersonType.swift */,
+				01A8C37925A5D0AE00ED5F3B /* PersonCell.swift */,
+				0153132725A493C100874DED /* WeekCell.swift */,
+			);
+			path = "Cells+Types";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,8 +176,6 @@
 				01592C9A25A327CF007E00D5 /* LaunchScreen.storyboard in Resources */,
 				01592C9725A327CF007E00D5 /* Assets.xcassets in Resources */,
 				01592C9525A327CB007E00D5 /* Main.storyboard in Resources */,
-				01074DF225A4FB69005C87B8 /* Nexa Light.otf in Resources */,
-				01A8C37E25A5D20500ED5F3B /* zphlwJ9dKHk.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,8 +188,10 @@
 			files = (
 				0153131C25A482B200874DED /* CollectionViewController.swift in Sources */,
 				019FDA7C25D5631600942477 /* TableContorller.swift in Sources */,
+				014378E62695F5E600DEDEA7 /* PersonType.swift in Sources */,
 				01A8C37A25A5D0AE00ED5F3B /* PersonCell.swift in Sources */,
 				0153132825A493C100874DED /* WeekCell.swift in Sources */,
+				013D5A3A263B22DC00C155B5 /* InfoViewController.swift in Sources */,
 				01592C8E25A327CB007E00D5 /* AppDelegate.swift in Sources */,
 				01A8C38625A5DEF200ED5F3B /* ProfileViewController.swift in Sources */,
 				0153132B25A4A2AF00874DED /* HeadernFooterCell.swift in Sources */,
@@ -328,7 +344,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7WL4YZL5KV;
-				INFOPLIST_FILE = Shift_Distribution/Info.plist;
+				INFOPLIST_FILE = /Users/Nick/Desktop/Shift_Distribution/Shift_Distribution/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -347,7 +363,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7WL4YZL5KV;
-				INFOPLIST_FILE = Shift_Distribution/Info.plist;
+				INFOPLIST_FILE = /Users/Nick/Desktop/Shift_Distribution/Shift_Distribution/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

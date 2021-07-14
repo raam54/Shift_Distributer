@@ -7,13 +7,14 @@
 
 import UIKit
 
-protocol CommunicationProtocol: class {
+protocol CommunicationProtocol: AnyObject {
     func refreshData(name: String, image: UIImage, phone: String)
 }
 
 class TableContorller: UITableViewController, CommunicationProtocol {
     
     var people = [Person]()
+    let userDefaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +27,6 @@ class TableContorller: UITableViewController, CommunicationProtocol {
         self.tableView.reloadData()
         //print(pictures)
     }
-    
-    
-//    func fetchImages() {
-//        let fm = FileManager.default
-//        let path = Bundle.main.resourcePath!
-//        let items = try! fm.contentsOfDirectory(atPath: path)
-//        pictures = items.filter{$0.hasSuffix("jpg")}
-//
-//            print(pictures)
-//            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
-//        }
     
 
     // MARK: - Table view data source
@@ -68,13 +58,6 @@ class TableContorller: UITableViewController, CommunicationProtocol {
         cell.infoBtn.tag = indexPath.row
         return cell
     }
-    
-// Maybe not this way
-    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//            self.tableView.beginUpdates()
-//            self.tableView.endUpdates()
-//        }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
