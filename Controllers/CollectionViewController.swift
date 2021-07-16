@@ -16,10 +16,8 @@ class CollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        overrideUserInterfaceStyle = .dark
-        
         title = "Shift Distribution"
-        UINavigationBarAppearance().shadowColor = .black
+        //UINavigationBarAppearance().shadowColor = .black
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPersonAC))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(distribute))
         
@@ -47,20 +45,21 @@ class CollectionViewController: UICollectionViewController {
             case 12: cell.label.text = "Пятница"
             default: cells.append(cell)
         }
-        cell.label.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+        cell.label.backgroundColor = hexStringToUIColor(hex: "#59bfff")
+        cell.sizeToFit()
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if (kind == UICollectionView.elementKindSectionFooter) {
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Footer", for: indexPath) as! FooterCell
-            footerView.SatLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+            footerView.SatLbl.backgroundColor = hexStringToUIColor(hex: "#59bfff")
             footerView.SatLbl.layer.cornerRadius = 10
             footerView.SatLbl.layer.masksToBounds = true
 //            footerView.SatLbl.layer.borderColor = UIColor.white.cgColor
             footerView.SatLbl.layer.borderWidth = 1
 //            footerView.SatWorkLbl.layer.borderColor = UIColor.white.cgColor
-            footerView.SatWorkLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+            footerView.SatWorkLbl.backgroundColor = hexStringToUIColor(hex: "#59bfff")
             footerView.SatWorkLbl.layer.borderWidth = 1
             footerView.SatWorkLbl.layer.cornerRadius = 10
             footerView.SatWorkLbl.layer.masksToBounds = true
@@ -71,17 +70,17 @@ class CollectionViewController: UICollectionViewController {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! HeaderCell
             
             headerView.infoLbl.layer.cornerRadius = 10
-            headerView.infoLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+            headerView.infoLbl.backgroundColor = hexStringToUIColor(hex: "#59bfff")
             headerView.infoLbl.layer.borderWidth = 1
             headerView.infoLbl.layer.masksToBounds = true
 //            headerView.infoLbl.layer.borderColor = UIColor.white.cgColor
             headerView.MornLbl.layer.borderWidth = 1
-            headerView.MornLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+            headerView.MornLbl.backgroundColor = hexStringToUIColor(hex: "#59bfff")
             headerView.MornLbl.layer.cornerRadius = 10
             headerView.MornLbl.layer.masksToBounds = true
 //            headerView.MornLbl.layer.borderColor = UIColor.white.cgColor
             headerView.EvenLbl.layer.borderWidth = 1
-            headerView.EvenLbl.backgroundColor = hexStringToUIColor(hex: "#3d405b")
+            headerView.EvenLbl.backgroundColor = hexStringToUIColor(hex: "#59bfff")
             headerView.EvenLbl.layer.cornerRadius = 10
             headerView.EvenLbl.layer.masksToBounds = true
 //            headerView.EvenLbl.layer.borderColor = UIColor.white.cgColor

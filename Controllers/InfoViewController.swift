@@ -30,6 +30,22 @@ class InfoViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = backButton
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        //showing shifts
+        let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        
+        for day in days {
+            print(person.shift[day]!)
+            switch(person.shift[day]!) {
+                case "First": collectionOfSegs[days.firstIndex{$0 == day}!].selectedSegmentIndex = 0
+                case "Second": collectionOfSegs[days.firstIndex{$0 == day}!].selectedSegmentIndex = 1
+                default: print("Fuck")
+            }
+        }
+    }
+    
     @objc func popVC(sender: UIBarButtonItem) {
        navigationController?.popViewController(animated: true)
     }

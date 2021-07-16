@@ -18,6 +18,6 @@ struct Person: Codable {
         self.photo = photo
         self.name = name
         self.phone = phone
-        self.shift = ["Monday": "First"]
+        self.shift = ["Monday": "First", "Tuesday": "Second", "Wednesday": "First", "Thursday": "Second", "Friday": "First", "Saturday": "Yes"]
     }
 }
