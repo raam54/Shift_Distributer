@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
     @objc func doneBtn() {
         guard let nameText = nameField.text else { return }
         guard let phoneText = phoneField.text else { return }
-        guard let curImage = currentImage else { return }
+        guard let curImage = currentImage.pngData() else { return }
         self.delegate?.refreshData(name: nameText, image: curImage, phone: phoneText)
         navigationController?.popToRootViewController(animated: true)
     }

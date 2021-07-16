@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-struct Person {
-    var photo: UIImage
+struct Person: Codable {
+    var photo: Data
     var name: String
     var phone: String
     var shift: [String: String]
     
-    init(photo: UIImage, name: String, phone: String) {
+    init(photo: Data, name: String, phone: String) {
         self.photo = photo
         self.name = name
         self.phone = phone

@@ -22,7 +22,7 @@ class InfoViewController: UIViewController {
             seg.isEnabled = false
         }
         SatSwitch.isEnabled = false
-        self.photo.image = person.photo
+        self.photo.image = UIImage(data: person.photo)
         self.name.text = person.name
         self.phone.text = person.phone
         
